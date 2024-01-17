@@ -1,3 +1,16 @@
+## 参考
+https://github.com/okuyama-code/react-ts-calendar
+
+https://github.com/AmruthPillai/React-Calendar/blob/main/src/calendar/Calendar.tsx
+
+https://github.com/AmruthPillai/React-Calendar/blob/main/src/calendar/Cell.tsx
+
+https://github.com/AmruthPillai/React-Calendar/blob/main/src/App.tsx
+
+https://github.com/AmruthPillai/React-Calendar/blob/main/src/components/Button.tsx
+
+ドキュメント https://date-fns.org/docs/Getting-Started
+
 ## windows パス
 ```
 cd ~/dev/happiness/nextjs_ts_calendar && code .
@@ -15,3 +28,4 @@ https://github.com/happiness-chain/practice/blob/main/17_Nextjs/001_%E3%82%AB%E3
 予定を編集できる。(編集はタイトルのみでOK)
 予定を削除できる。
 作成した予定がカレンダーに表示される。月にも週にも。
+
