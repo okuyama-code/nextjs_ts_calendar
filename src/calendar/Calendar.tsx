@@ -18,6 +18,7 @@ const weeks = ["日", "月", "火", "水", "木", "金", "土"];
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
 
+
   const startDate = startOfMonth(currentDate);
   const endDate = endOfMonth(currentDate);
   const numDays = differenceInDays(endDate, startDate) + 1;
@@ -33,22 +34,23 @@ const Calendar = () => {
     setCurrentDate(date);
   };
 
-
   const handleSetToday = () => setCurrentDate(new Date());
+
+
 
   return (
     <div className="flex flex-col w-full">
-        <div>
-        <Button onClick={handleSetToday}>Today</Button>
+        <div className="text-center p-3">
           <button onClick={prevMonth}>{"<"}</button>
-          <button className="col-span-3">{format(currentDate, "LLLL yyyy")}</button>
-          <button onClick={nextMonth}>{">"}</button>
+          <button className="inline-block w-40">{format(currentDate, "LLLL yyyy")}</button>
+          <button className="mr-5" onClick={nextMonth}>{">"}</button>
+          <Button onClick={handleSetToday}>Today</Button>
         </div>
       <div className="w-full border-t border-l">
         <div className="grid grid-cols-7 items-center justify-center text-center">
 
           {weeks.map((week) => (
-            <Cell key={week} className="text-xs font-bold uppercase">{week}</Cell>
+            <Cell key={week} week={week} className="text-xs font-bold uppercase"></Cell>
           ))}
 
           {Array.from({ length: prefixDays }).map((_, index) => (
@@ -63,10 +65,10 @@ const Calendar = () => {
             return (
               <Cell
                 key={date}
+                date={date}
                 isActive={isCurrentDate}
                 onClick={() => handleClickDate(date)}
               >
-                {date}
               </Cell>
             );
           })}

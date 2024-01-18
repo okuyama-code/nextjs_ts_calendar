@@ -1,6 +1,7 @@
 "use client"
 
 import Calendar from '@/calendar/Calendar'
+import EventModal from '@/components/EventModal'
 
 
 

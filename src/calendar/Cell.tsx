@@ -1,32 +1,38 @@
 import clsx from "clsx";
 
-interface Props extends React.PropsWithChildren {
+interface Props {
   className?: string;
   isActive?: boolean;
   onClick?: () => void;
+  date?: number;
+  week?: string
 }
 
 const Cell: React.FC<Props> = ({
   onClick,
-  children,
   className,
   isActive = false,
+  date,
+  week,
 }) => {
   return (
     <div
       onClick={!isActive ? onClick : undefined}
       className={clsx(
-        "h-20 border-b border-r flex  justify-center select-none transition-colors",
+        "h-20 border-b border-r select-none transition-colors",
         {
           "cursor-pointer hover:bg-gray-100 active:bg-gray-200":
             !isActive && onClick,
-          "font-bold text-white bg-blue-600": isActive,
+          "font-bold text-white bg-blue-200": isActive,
         },
         className
       )}
     >
-      {children}
-      <div></div>
+      <div>
+        {week}
+        {date}
+      </div>
+      {/* <div>{title}</div> */}
     </div>
   );
 };

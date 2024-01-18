@@ -4,11 +4,10 @@ import { IoIosClose } from "react-icons/io";
 
 const EventModal = () => {
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-
+  
   return (
     <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center">
-      <form className="bg-white rounded-lg shadow-2xl w-1/4">
+      <form className="bg-white rounded-lg shadow-2xl w-1/3">
         <header className="bg-gray-100 px-4 py-2 flex justify-between items-center">
           <span className="text-gray-400">
             {"="}
@@ -41,19 +40,9 @@ const EventModal = () => {
             />
 
             {/* <p>{daySelected.format("dddd, MMMM DD")}</p> */}
-            
-            <input
-              type="text"
-              name="description"
-              placeholder="Add a description"
-              value={description}
-              required
-              className="pt-3 border-0 text-gray-600 pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
-              onChange={(e) => setDescription(e.target.value)}
-            />
-            <span className="material-icons-outlined text-gray-400">
-              bookmark_border
-            </span>
+
+
+
 
           </div>
         </div>
