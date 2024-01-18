@@ -16,7 +16,7 @@ const Cell: React.FC<Props> = ({
     <div
       onClick={!isActive ? onClick : undefined}
       className={clsx(
-        "h-10 border-b border-r flex items-center justify-center select-none transition-colors",
+        "h-20 border-b border-r flex  justify-center select-none transition-colors",
         {
           "cursor-pointer hover:bg-gray-100 active:bg-gray-200":
             !isActive && onClick,
@@ -26,6 +26,7 @@ const Cell: React.FC<Props> = ({
       )}
     >
       {children}
+      <div></div>
     </div>
   );
 };
