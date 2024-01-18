@@ -51,6 +51,7 @@ const Calendar: React.FC<Props> = ({ value = new Date(), onChange }) => {
           <Cell key={index} />
         ))}
 
+          {/* TODO　ここに予定のtitleを入れる */}
         {Array.from({ length: numDays }).map((_, index) => {
           const date = index + 1;
           const isCurrentDate = date === value.getDate();

@@ -3,6 +3,7 @@
 import Calendar from '@/calendar/Calendar'
 import CalendarHeader from '@/calendar/CalendarHeader'
 import Button from '@/components/Button';
+import EventModal from '@/components/EventModal';
 import Sidebar from '@/components/Sidebar'
 import { useState } from 'react';
 
@@ -13,6 +14,7 @@ export default function Home() {
   const handleSetToday = () => setCurrentDate(new Date());
   return (
     <>
+      <EventModal />
       <div className="h-screen flex flex-col">
         <CalendarHeader />
         <Button onClick={handleSetToday}>Today</Button>
