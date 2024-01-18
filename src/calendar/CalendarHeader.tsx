@@ -2,7 +2,7 @@ import React from 'react'
 
 const CalendarHeader = () => {
   return (
-    <div>CalendarHeader</div>
+    <div className='text-gray-500'>CalendarHeader</div>
   )
 }
 
