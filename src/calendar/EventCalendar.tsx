@@ -158,40 +158,45 @@ const EventCalendar = ({ events }: EventCalendarProps) => {
           return (
             <div
               key={index}
-              className={clsx("border rounded-md p-2 text-center", {
-                "bg-gray-200": isToday(day),
-                "text-gray-900": isToday(day),
-              })}
+              className={clsx(
+                "border rounded-md pb-14 text-center",
+                {
+                  "bg-gray-200": isToday(day),
+                  "text-gray-900": isToday(day),
+                },
+                "relative" // Add relative positioning for absolute positioning of buttons
+              )}
             >
               {format(day, "d")}
               {todaysEvents.map((event) => (
                 <div
                   key={event.title}
-                  className="bg-green-500 rounded-md text-gray-900"
+                  className="bg-green-500 rounded-md text-gray-900 relative"
                 >
                   {event.title}
-                  <button onClick={() => handleEditEvent(event)}>Edit</button>
-                  <button onClick={() => handleDeleteEvent(event)}>Delete</button>
+                  <div className="absolute top-6 r left-1 mt-2 ">
+                    {/* Edit Button */}
+                    <button
+                      onClick={() => handleEditEvent(event)}
+                      className="px-1 bg-blue-500 text-white rounded-md focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
+                    >
+                      編集
+                    </button>
+                    {/* Delete Button */}
+                    <button
+                      onClick={() => handleDeleteEvent(event)}
+                      className="px-1 ml-2 bg-red-500 text-white rounded-md focus:outline-none focus:shadow-outline-red active:bg-red-800"
+                    >
+                      削除
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
+
           );
         })}
-        {/* イベント追加用のフォーム */}
-        {/* <form onSubmit={handleFormSubmit}>
-          <input
-            type="date"
-            value={newEventDate}
-            onChange={(e) => setNewEventDate(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Event Title"
-            value={newEventTitle}
-            onChange={(e) => setNewEventTitle(e.target.value)}
-          />
-          <button type="submit">{editingEvent ? "Edit Event" : "Add Event"}</button>
-        </form> */}
+
         <EventFormModal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
