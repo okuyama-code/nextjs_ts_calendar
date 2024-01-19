@@ -120,28 +120,43 @@ const EventCalendar = ({ events }: EventCalendarProps) => {
         <h2 className="text-center">
           {format(currentDate, currentView === 'month' ? "MMMM yyyy" : "'Week'")}
         </h2>
-      </div>
-      <div className="flex mb-2">
-        <button onClick={openModal}>Open Modal</button>
+      <div className="flex mb-2"></div>
         <button
-          className={clsx("mr-2", currentView === 'month' && 'font-bold')}
+          onClick={openModal}
+          className="px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
+        >
+          イベントを追加する
+        </button>
+        <button
+          className={clsx("mr-2", "px-4 py-2", currentView === 'month' && 'font-bold')}
           onClick={() => setCurrentView('month')}
         >
-          Month
+          月表示
         </button>
         <button
-          className={clsx(currentView === 'week' && 'font-bold')}
+          className={clsx("px-4 py-2", currentView === 'week' && 'font-bold')}
           onClick={() => setCurrentView('week')}
         >
-          Week
+          週表示
         </button>
       </div>
+
       <div className="flex mb-2">
-        <button onClick={handlePrevMonth}>Prev Month</button>
-        <button onClick={handleNextMonth}>Next Month</button>
+        <button
+          onClick={handlePrevMonth}
+          className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md focus:outline-none focus:shadow-outline-gray active:bg-gray-500"
+        >
+          一か月前へ
+        </button>
+        <button
+          onClick={handleNextMonth}
+          className="px-4 py-2 ml-2 bg-gray-300 text-gray-700 rounded-md focus:outline-none focus:shadow-outline-gray active:bg-gray-500"
+        >
+          一か月後へ
+        </button>
       </div>
       <div className="grid grid-cols-7 gap-2">
-        {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+        {["日", "月", "火", "水", "木", "金", "土"].map((day) => (
           <div key={day} className="font-bold text-center">
             {day}
           </div>
@@ -164,7 +179,7 @@ const EventCalendar = ({ events }: EventCalendarProps) => {
                   "bg-gray-200": isToday(day),
                   "text-gray-900": isToday(day),
                 },
-                "relative" // Add relative positioning for absolute positioning of buttons
+                "relative"
               )}
             >
               {format(day, "d")}
@@ -175,7 +190,6 @@ const EventCalendar = ({ events }: EventCalendarProps) => {
                 >
                   {event.title}
                   <div className="absolute top-6 r left-1 mt-2 ">
-                    {/* Edit Button */}
                     <button
                       onClick={() => handleEditEvent(event)}
                       className="px-1 bg-blue-500 text-white rounded-md focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
