@@ -1,8 +1,5 @@
-## 参考
-このユーチューブを見る
-https://www.youtube.com/watch?v=RWz23UKXdAk
-
-ドキュメント https://date-fns.org/docs/Getting-Started
+## githubリポジトリ
+https://github.com/okuyama-code/nextjs_ts_calendar
 
 ## windows パス
 ```
