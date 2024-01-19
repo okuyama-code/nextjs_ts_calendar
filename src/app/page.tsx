@@ -1,9 +1,7 @@
 "use client"
 
-import Calendar from '@/calendar/Calendar'
 import EventCalendar from '@/calendar/EventCalendar'
 
-import EventModal from '@/components/EventModal'
 import { addDays, subDays } from 'date-fns'
 
 
@@ -11,7 +9,6 @@ import { addDays, subDays } from 'date-fns'
 export default function Home() {
   return (
     <>
-      {/* <EventModal /> */}
       <div >
         <EventCalendar
           events={[

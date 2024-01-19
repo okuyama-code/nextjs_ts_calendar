@@ -13,6 +13,8 @@ import {
   subMonths,
 } from "date-fns";
 
+import EventFormModal from '@/components/EventFormModal'
+
 interface Event {
   date: Date;
   title: string;
@@ -53,7 +55,7 @@ const EventCalendar = ({ events }: EventCalendarProps) => {
     }, {});
   }, [eventList]);
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = (e: any) => {
     e.preventDefault();
 
     if (editingEvent) {
@@ -63,6 +65,7 @@ const EventCalendar = ({ events }: EventCalendarProps) => {
       );
       setEventList(updatedEventList);
       setEditingEvent(null); // 編集モード終了
+      setIsModalOpen(false);
     } else {
       // 新しいイベントを追加
       const newEvent: Event = {
@@ -70,15 +73,17 @@ const EventCalendar = ({ events }: EventCalendarProps) => {
         title: newEventTitle,
       };
       setEventList([...eventList, newEvent]);
+      setIsModalOpen(false);
+
     }
 
-    // フォームの入力をクリア
     setNewEventDate("");
     setNewEventTitle("");
   };
 
   const handleEditEvent = (event: Event) => {
     // 編集モードに入る
+    setIsModalOpen(true);
     setEditingEvent(event);
     setNewEventDate(format(event.date, "yyyy-MM-dd"));
     setNewEventTitle(event.title);
@@ -98,6 +103,17 @@ const EventCalendar = ({ events }: EventCalendarProps) => {
     setCurrentDate((prevDate) => addMonths(prevDate, 1));
   };
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+
   return (
     <div className="container mx-auto p-4">
       <div className="mb-4">
@@ -106,6 +122,7 @@ const EventCalendar = ({ events }: EventCalendarProps) => {
         </h2>
       </div>
       <div className="flex mb-2">
+        <button onClick={openModal}>Open Modal</button>
         <button
           className={clsx("mr-2", currentView === 'month' && 'font-bold')}
           onClick={() => setCurrentView('month')}
@@ -161,7 +178,7 @@ const EventCalendar = ({ events }: EventCalendarProps) => {
           );
         })}
         {/* イベント追加用のフォーム */}
-        <form onSubmit={handleFormSubmit}>
+        {/* <form onSubmit={handleFormSubmit}>
           <input
             type="date"
             value={newEventDate}
@@ -174,7 +191,18 @@ const EventCalendar = ({ events }: EventCalendarProps) => {
             onChange={(e) => setNewEventTitle(e.target.value)}
           />
           <button type="submit">{editingEvent ? "Edit Event" : "Add Event"}</button>
-        </form>
+        </form> */}
+        <EventFormModal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        editingEvent={editingEvent}
+        newEventDate={newEventDate}
+        newEventTitle={newEventTitle}
+        onDateChange={(e: React.ChangeEvent<HTMLInputElement>) => setNewEventDate(e.target.value)}
+        onTitleChange={(e: React.ChangeEvent<HTMLInputElement>) => setNewEventTitle(e.target.value)}
+        closeModal={closeModal}
+        onSubmit={handleFormSubmit}
+      />
       </div>
     </div>
   );
