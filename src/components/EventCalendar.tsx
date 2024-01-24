@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, FormEvent } from "react";
 import clsx from "clsx";
 import {
   eachDayOfInterval,
@@ -55,7 +55,7 @@ const EventCalendar = ({ events }: EventCalendarProps) => {
     }, {});
   }, [eventList]);
 
-  const handleFormSubmit = (e: any) => {
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (editingEvent) {
@@ -113,6 +113,8 @@ const EventCalendar = ({ events }: EventCalendarProps) => {
     setIsModalOpen(false);
   };
 
+  const WEEK = ["日", "月", "火", "水", "木", "金", "土"]
+
 
   return (
     <div className="container mx-auto p-4">
@@ -156,7 +158,7 @@ const EventCalendar = ({ events }: EventCalendarProps) => {
         </button>
       </div>
       <div className="grid grid-cols-7 gap-2">
-        {["日", "月", "火", "水", "木", "金", "土"].map((day) => (
+        {WEEK.map((day) => (
           <div key={day} className="font-bold text-center">
             {day}
           </div>
@@ -221,7 +223,7 @@ const EventCalendar = ({ events }: EventCalendarProps) => {
         onTitleChange={(e: React.ChangeEvent<HTMLInputElement>) => setNewEventTitle(e.target.value)}
         closeModal={closeModal}
         onSubmit={handleFormSubmit}
-      />
+        />
       </div>
     </div>
   );

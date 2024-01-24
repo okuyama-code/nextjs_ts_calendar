@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FormEvent } from "react";
 import Modal from "react-modal";
 
 interface EventFormModalProps {
@@ -9,7 +9,7 @@ interface EventFormModalProps {
   newEventTitle: string;
   onDateChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onTitleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSubmit: (e: React.FormEvent) => void;
+  onSubmit: (e: FormEvent<HTMLFormElement>) => void;
   closeModal: () => void;
 }
 
